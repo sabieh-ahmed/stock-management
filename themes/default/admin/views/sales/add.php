@@ -256,6 +256,7 @@
                                 <?php echo form_input('reference_no', (isset($_POST['reference_no']) ? $_POST['reference_no'] : $slnumber), 'class="form-control input-tip" id="slref"'); ?>
                             </div>
                         </div>
+                     
                         <?php if ($Owner || $Admin || !$this->session->userdata('biller_id')) { ?>
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -279,6 +280,29 @@
 
                             echo form_input($biller_input);
                         } ?>
+                        <div class="col-md-12">
+                               
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                 <?= lang("GSTIN of the supplier", "GSTIN"); ?>
+                                <?php echo form_input('GSTIN_supplier', (isset($_POST['GSTIN_supplier']) ? $_POST['GSTIN_supplier'] : ''), 'class="form-control input-tip" id="GSTIN"'); ?>
+                            </div>
+                        </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                                 <?= lang("Name of the supplier", "name_of_supplier"); ?>
+                                <?php echo form_input('name_of_supplier', (isset($_POST['name_of_supplier']) ? $_POST['name_of_supplier'] : ''), 'class="form-control input-tip" id="name_of_supplier"'); ?>
+                            </div>
+                        </div>
+                
+                          <div class="col-md-4">
+                            <div class="form-group">
+                                 <?= lang("Principle place of business", "principle_place_of_business"); ?>
+                                <?php echo form_input('principle_place_of_business', (isset($_POST['principle_place_of_business']) ? $_POST['principle_place_of_business'] : ''), 'class="form-control input-tip" id="principle_place_of_business"'); ?>
+                            </div>
+                        </div>
+                        
+                        </div>
 
                         <div class="clearfix"></div>
                         <div class="col-md-12">
