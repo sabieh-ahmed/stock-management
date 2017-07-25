@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'https://stock-management-sabiehahmed.c9users.io/';
+//$config['base_url'] = 'tps://stock-management-sabiehahmed.c9users.ihto/';
 
 /*
 |--------------------------------------------------------------------------
