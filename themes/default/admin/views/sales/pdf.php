@@ -18,38 +18,25 @@
 <div id="wrap">
     <div class="row">
         <div class="col-lg-12">
-            <?php if ($logo) {
-                $path = base_url() . 'assets/uploads/logos/' . $biller->logo;
-                $type = pathinfo($path, PATHINFO_EXTENSION);
-                $data = file_get_contents($path);
-                $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-                ?>
-                <div class="text-center" style="margin-bottom:20px;">
-                    <img src="<?= $base64; ?>" alt="<?= $biller->company != '-' ? $biller->company : $biller->name; ?>">
-                </div>
-            <?php }
-            ?>
             <div class="clearfix"></div>
             <div class="padding10">
                 <div class="col-xs-5"
                      style="border:1px solid #000 !important; height:100px!important;margin:0px!important">
-                    GSTIN of the Supplier :
+                    GSTIN of the Supplier : <?php echo isset($customer->vat_no) ? $customer->vat_no : '';?>
+                    <br> 
+                    Name of the Supplier : <?php echo isset($customer->name) ? $customer->name : '';?>
                     <br>
-                    Name of the Supplier :
+                    Principle Place of Business : <?php echo isset($customer->cf1) ? $customer->cf1 : '';?>
                     <br>
-                    Principle Place of Business :
-                    <br>
-                    State Name & Code :
+                    State Name & Code : <?php echo isset($customer->cf3) ? $customer->cf3 : '' ;  echo ' / '. isset($customer->cf4) ? $customer->cf4 : ''; ?>
                 </div>
                 <div class="col-xs-5"
                      style="border:1px solid #000 !important;height:100px!important;margin:0px!important">
-                    Invoice No:
+                    Invoice No and Date:  <?php echo isset($inv->invoice_no_and_date) ? $inv->invoice_no_and_date : '';?>
                     <br>
-                    Invoice Date:
+                    Inco Terms:  <?php echo isset($customer->cf2) ? $customer->cf2 : '' ?>
                     <br>
-                    Inco Terms:
-                    <br>
-                    Whether tax is payable in reverse charge basis Y/N :
+                    Whether tax is payable in reverse charge basis Y/N :  <?php echo isset($customer->cf1) ? 'Yes' : 'No';?>
                     <div class="clearfix"></div>
                 </div>
             </div>
@@ -57,7 +44,7 @@
             <div class="padding10">
                 <div class="col-md-8"
                      style="border:1px solid #000 !important; height:20px!important;margin:0px!important;width:91.5%!important;">
-                    Place of supply:
+                    Place of supply:  <?php echo isset($customer->cf5) ? $customer->cf5 : '';?>
                     <div class="clearfix"></div>
                 </div>
             </div>
@@ -67,17 +54,17 @@
                      style="border:1px solid #000 !important; height:200px!important;margin:0px!important;">
                     Details of Buyer:
                     <br>
-                    Name: Name :
+                    Name:   <?php echo isset($customer->name) ? $customer->name : '';?>
                     <br>
-                    Address: Address :
+                    Address:   <?php echo isset($customer->address) ? $customer->address : '';?>
                     <br>
-                    Mandal: District :
+                    Mandal:  <?php echo isset($customer->postal_code) ? $customer->postal_code : '';?>
                     <br>
-                    Mobile: Phone :
+                    Mobile: <?php echo isset($customer->phone) ? $customer->phone : '';?>
                     <br>
-                    GSTIN Number :
-                    <br>
-                    GSTIN State Code :
+                    GSTIN Number: <?php echo isset($customer->vat_no) ? $customer->vat_no : '';?>
+                    <br> 
+                    GSTIN State Code: <?php echo isset($customer->state) ? $customer->state : '';?>
                     <br>
                     <div class="clearfix"></div>
                 </div>
@@ -85,17 +72,17 @@
                      style="border:1px solid #000 !important; height:200px!important;margin:0px!important;">
                     Details of Consignee:
                     <br>
-                    Name: Name :
+                    Name:   <?php echo isset($biller->name) ? $biller->name : '';?>
                     <br>
-                    Address: Address :
+                    Address:   <?php echo isset($biller->address) ? $biller->address : '';?>
                     <br>
-                    Mandal: District :
+                    Mandal:  <?php echo isset($biller->postal_code) ? $biller->postal_code : '';?>
                     <br>
-                    Mobile: Phone :
+                    Mobile: <?php echo isset($biller->phone) ? $biller->phone : '';?>
                     <br>
-                    GSTIN Number :
-                    <br>
-                    GSTIN State Code :
+                    GSTIN Number: <?php echo isset($biller->vat_no) ? $biller->vat_no : '';?>
+                    <br> 
+                    GSTIN State Code: <?php echo isset($biller->state) ? $biller->state : '';?>
                     <br>
                     <div class="clearfix"></div>
                 </div>
@@ -158,7 +145,7 @@
                                     <td style="text-align:right; width:90px;"><?= $this->sma->formatMoney($row->real_unit_price); ?></td>
                                     <?php
                                     if ($Settings->tax1 && $inv->product_tax > 0) {
-                                        echo '<td style="text-align:right; vertical-align:middle;">' . ($row->item_tax != 0 && $row->tax_code ? '<small>('.$row->tax_code.')</small>' : '') . ' ' . $this->sma->formatMoney($row->item_tax) . '</td>';
+                                        echo '<td style="text- align:right; vertical-align:middle;">' . ($row->item_tax != 0 && $row->tax_code ? '<small>('.$row->tax_code.')</small>' : '') . ' ' . $this->sma->formatMoney($row->item_tax) . '</td>';
                                     }
                                     if ($Settings->product_discount && $inv->product_discount != 0) {
                                         echo '<td style="text-align:right; vertical-align:middle;">' . ($row->discount != 0 ? '<small>(' . $row->discount . ')</small> ' : '') . $this->sma->formatMoney($row->item_discount) . '</td>';
@@ -179,10 +166,8 @@
             </div>
             <div class="clearfix"></div>
             <div class="col-xs-4 pull-left">
-                <p style="height: 80px;"><?= lang('seller'); ?>
-                    : <?= $biller->company != '-' ? $biller->company : $biller->name; ?> </p>
-                <hr>
-                <p><?= lang('stamp_sign'); ?></p>
+               
+               
             </div>
             <div class="col-xs-4 pull-right">
                 <p style="height: 80px;"><?= lang('customer'); ?>
