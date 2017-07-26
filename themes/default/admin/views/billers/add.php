@@ -39,7 +39,7 @@
                         <?php echo form_input('name', '', 'class="form-control tip" id="name" data-bv-notempty="true"'); ?>
                     </div>
                     <div class="form-group">
-                        <?= lang("vat_no", "vat_no"); ?>
+                        <?= lang("GSTIN No.", "vat_no"); ?>
                         <?php echo form_input('vat_no', '', 'class="form-control" id="vat_no"'); ?>
                     </div>
                     <!--<div class="form-group company">
@@ -77,26 +77,26 @@
                         <?= lang("country", "country"); ?>
                         <?php echo form_input('country', '', 'class="form-control" id="country"'); ?>
                     </div>
-                    <div class="form-group">
-                        <?= lang("bcf1", "cf1"); ?>
+                     <div class="form-group">
+                        <?= lang("Principle Place of Business", "cf1"); ?>
                         <?php echo form_input('cf1', '', 'class="form-control" id="cf1"'); ?>
                     </div>
                     <div class="form-group">
-                        <?= lang("bcf2", "cf2"); ?>
+                        <?= lang("Inco Terms", "cf2"); ?>
                         <?php echo form_input('cf2', '', 'class="form-control" id="cf2"'); ?>
 
                     </div>
                     <div class="form-group">
-                        <?= lang("bcf3", "cf3"); ?>
+                        <?= lang("State Name", "cf3"); ?>
                         <?php echo form_input('cf3', '', 'class="form-control" id="cf3"'); ?>
                     </div>
                     <div class="form-group">
-                        <?= lang("bcf4", "cf4"); ?>
+                        <?= lang("State Code", "cf4"); ?>
                         <?php echo form_input('cf4', '', 'class="form-control" id="cf4"'); ?>
 
                     </div>
                     <div class="form-group">
-                        <?= lang("bcf5", "cf5"); ?>
+                        <?= lang("Place of supply", "cf5"); ?>
                         <?php echo form_input('cf5', '', 'class="form-control" id="cf5"'); ?>
 
                     </div>

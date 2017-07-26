@@ -404,6 +404,8 @@ class Sales extends MY_Controller
             $note = $this->sma->clear_tags($this->input->post('note'));
             $staff_note = $this->sma->clear_tags($this->input->post('staff_note'));
             $quote_id = $this->input->post('quote_id') ? $this->input->post('quote_id') : null;
+            
+            
 
             $total = 0;
             $product_tax = 0;
@@ -561,6 +563,16 @@ class Sales extends MY_Controller
                 'paid' => 0,
                 'created_by' => $this->session->userdata('user_id'),
                 'hash' => hash('sha256', microtime() . mt_rand()),
+                'place_of_supply' => $this->input->post('place_of_supply'),
+                'mode_of_transport' => $this->input->post('mode_of_transport'),
+                'transporter_name' => $this->input->post('transporter_name'),
+                'transporter_code' => $this->input->post('transporter_code'),
+                'vehicle_reg_no' => $this->input->post('vehicle_reg_no'),
+                'invoice_no_and_date' => $this->input->post('invoice_no_and_date'),
+                'party_code_and_name' => $this->input->post('party_code_and_name'),
+                'destination' => $this->input->post('destination'),
+                'transporter_name_and_code' => $this->input->post('transporter_name_and_code'),
+                
             );
 
             if ($payment_status == 'partial' || $payment_status == 'paid') {

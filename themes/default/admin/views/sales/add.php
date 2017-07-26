@@ -1,7 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <script type="text/javascript">
     var count = 1, an = 1, product_variant = 0, DT = <?= $Settings->default_tax_rate ?>,
-        product_tax = 0, invoice_tax = 0, product_discount = 0, order_discount = 0, total_discount = 0, total = 0, allow_discount = <?= ($Owner || $Admin || $this->session->userdata('allow_discount')) ? 1 : 0; ?>,
+        product_tax = 0, invoice_tax = 0, product_discount = 0, order_discount = 0, total_discount = 0, total = 0,
+        allow_discount = <?= ($Owner || $Admin || $this->session->userdata('allow_discount')) ? 1 : 0; ?>,
         tax_rates = <?php echo json_encode($tax_rates); ?>;
     //var audio_success = new Audio('<?=$assets?>sounds/sound2.mp3');
     //var audio_error = new Audio('<?=$assets?>sounds/sound3.mp3');
@@ -256,7 +257,7 @@
                                 <?php echo form_input('reference_no', (isset($_POST['reference_no']) ? $_POST['reference_no'] : $slnumber), 'class="form-control input-tip" id="slref"'); ?>
                             </div>
                         </div>
-                     
+
                         <?php if ($Owner || $Admin || !$this->session->userdata('biller_id')) { ?>
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -281,34 +282,81 @@
                             echo form_input($biller_input);
                         } ?>
                         <div class="col-md-12">
-                               
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                 <?= lang("GSTIN of the supplier", "GSTIN"); ?>
-                                <?php echo form_input('GSTIN_supplier', (isset($_POST['GSTIN_supplier']) ? $_POST['GSTIN_supplier'] : ''), 'class="form-control input-tip" id="GSTIN"'); ?>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <?= lang("Place of supply", "place_of_supply"); ?>
+                                    <?php echo form_input('place_of_supply', (isset($_POST['place_of_supply']) ? $_POST['place_of_supply'] : ''), 'class="form-control input-tip" id="place_of_supply"'); ?>
+                                </div>
                             </div>
-                        </div>
-                          <div class="col-md-4">
-                            <div class="form-group">
-                                 <?= lang("Name of the supplier", "name_of_supplier"); ?>
-                                <?php echo form_input('name_of_supplier', (isset($_POST['name_of_supplier']) ? $_POST['name_of_supplier'] : ''), 'class="form-control input-tip" id="name_of_supplier"'); ?>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <?= lang("Mode of Transport", "mode_of_transport"); ?>
+                                    <?php echo form_input('mode_of_transport', (isset($_POST['mode_of_transport']) ? $_POST['mode_of_transport'] : ''), 'class="form-control input-tip" id="mode_of_transport"'); ?>
+                                </div>
                             </div>
-                        </div>
-                
-                          <div class="col-md-4">
-                            <div class="form-group">
-                                 <?= lang("Principle place of business", "principle_place_of_business"); ?>
-                                <?php echo form_input('principle_place_of_business', (isset($_POST['principle_place_of_business']) ? $_POST['principle_place_of_business'] : ''), 'class="form-control input-tip" id="principle_place_of_business"'); ?>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <?= lang("Transporter Name", "transporter_name"); ?>
+                                    <?php echo form_input('transporter_name', (isset($_POST['transporter_name']) ? $_POST['transporter_name'] : ''), 'class="form-control input-tip" id="transporter_name"'); ?>
+                                </div>
                             </div>
+
                         </div>
-                        
+                        <div class="col-md-12">
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <?= lang("Transporter code", "transporter_code"); ?>
+                                    <?php echo form_input('transporter_code', (isset($_POST['transporter_code']) ? $_POST['transporter_code'] : ''), 'class="form-control input-tip" id="transporter_code"'); ?>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <?= lang("Vehicle Regn No.", "vehicle_reg_no"); ?>
+                                    <?php echo form_input('vehicle_reg_no', (isset($_POST['vehicle_reg_no']) ? $_POST['vehicle_reg_no'] : ''), 'class="form-control input-tip" id="vehicle_reg_no"'); ?>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <?= lang("Invoice Number and Date", "invoice_no_and_date"); ?>
+                                    <?php echo form_input('invoice_no_and_date', (isset($_POST['invoice_no_and_date']) ? $_POST['invoice_no_and_date'] : ''), 'class="form-control input-tip" id="invoice_no_and_date"'); ?>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <?= lang("Party code and Name", "party_code_and_name"); ?>
+                                    <?php echo form_input('party_code_and_name', (isset($_POST['party_code_and_name']) ? $_POST['party_code_and_name'] : ''), 'class="form-control input-tip" id="party_code_and_name"'); ?>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <?= lang( "Destination", "destination"); ?>
+                                    <?php echo form_input('destination', (isset($_POST['destination']) ? $_POST['destination'] : ''), 'class="form-control input-tip" id="destination"'); ?>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <?= lang("Transporter name and Code", "transporter_name_and_code"); ?>
+                                    <?php echo form_input('transporter_name_and_code', (isset($_POST['transporter_name_and_code']) ? $_POST['transporter_name_and_code'] : ''), 'class="form-control input-tip" id="transporter_name_and_code"'); ?>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="clearfix"></div>
                         <div class="col-md-12">
                             <div class="panel panel-warning">
                                 <div
-                                    class="panel-heading"><?= lang('please_select_these_before_adding_product') ?></div>
+                                        class="panel-heading"><?= lang('please_select_these_before_adding_product') ?></div>
                                 <div class="panel-body" style="padding: 5px;">
                                     <?php if ($Owner || $Admin || !$this->session->userdata('warehouse_id')) { ?>
                                         <div class="col-md-4">
@@ -340,22 +388,28 @@
                                                 <?php
                                                 echo form_input('customer', (isset($_POST['customer']) ? $_POST['customer'] : ""), 'id="slcustomer" data-placeholder="' . lang("select") . ' ' . lang("customer") . '" required="required" class="form-control input-tip" style="width:100%;"');
                                                 ?>
-                                                <div class="input-group-addon no-print" style="padding: 2px 8px; border-left: 0;">
+                                                <div class="input-group-addon no-print"
+                                                     style="padding: 2px 8px; border-left: 0;">
                                                     <a href="#" id="toogle-customer-read-attr" class="external">
-                                                        <i class="fa fa-pencil" id="addIcon" style="font-size: 1.2em;"></i>
+                                                        <i class="fa fa-pencil" id="addIcon"
+                                                           style="font-size: 1.2em;"></i>
                                                     </a>
                                                 </div>
-                                                <div class="input-group-addon no-print" style="padding: 2px 7px; border-left: 0;">
-                                                    <a href="#" id="view-customer" class="external" data-toggle="modal" data-target="#myModal">
+                                                <div class="input-group-addon no-print"
+                                                     style="padding: 2px 7px; border-left: 0;">
+                                                    <a href="#" id="view-customer" class="external" data-toggle="modal"
+                                                       data-target="#myModal">
                                                         <i class="fa fa-eye" id="addIcon" style="font-size: 1.2em;"></i>
                                                     </a>
                                                 </div>
                                                 <?php if ($Owner || $Admin || $GP['customers-add']) { ?>
-                                                <div class="input-group-addon no-print" style="padding: 2px 8px;">
-                                                    <a href="<?= admin_url('customers/add'); ?>" id="add-customer"class="external" data-toggle="modal" data-target="#myModal">
-                                                        <i class="fa fa-plus-circle" id="addIcon"  style="font-size: 1.2em;"></i>
-                                                    </a>
-                                                </div>
+                                                    <div class="input-group-addon no-print" style="padding: 2px 8px;">
+                                                        <a href="<?= admin_url('customers/add'); ?>" id="add-customer"
+                                                           class="external" data-toggle="modal" data-target="#myModal">
+                                                            <i class="fa fa-plus-circle" id="addIcon"
+                                                               style="font-size: 1.2em;"></i>
+                                                        </a>
+                                                    </div>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -374,17 +428,22 @@
                                             <i class="fa fa-2x fa-barcode addIcon"></i></a></div>
                                         <?php echo form_input('add_item', '', 'class="form-control input-lg" id="add_item" placeholder="' . lang("add_product_to_order") . '"'); ?>
                                         <?php if ($Owner || $Admin || $GP['products-add']) { ?>
-                                        <div class="input-group-addon" style="padding-left: 10px; padding-right: 10px;">
-                                            <a href="#" id="addManually" class="tip" title="<?= lang('add_product_manually') ?>">
-                                                <i class="fa fa-2x fa-plus-circle addIcon" id="addIcon"></i>
-                                            </a>
-                                        </div>
-                                        <?php } if ($Owner || $Admin || $GP['sales-add_gift_card']) { ?>
-                                        <div class="input-group-addon" style="padding-left: 10px; padding-right: 10px;">
-                                            <a href="#" id="sellGiftCard" class="tip" title="<?= lang('sell_gift_card') ?>">
-                                               <i class="fa fa-2x fa-credit-card addIcon" id="addIcon"></i>
-                                            </a>
-                                        </div>
+                                            <div class="input-group-addon"
+                                                 style="padding-left: 10px; padding-right: 10px;">
+                                                <a href="#" id="addManually" class="tip"
+                                                   title="<?= lang('add_product_manually') ?>">
+                                                    <i class="fa fa-2x fa-plus-circle addIcon" id="addIcon"></i>
+                                                </a>
+                                            </div>
+                                        <?php }
+                                        if ($Owner || $Admin || $GP['sales-add_gift_card']) { ?>
+                                            <div class="input-group-addon"
+                                                 style="padding-left: 10px; padding-right: 10px;">
+                                                <a href="#" id="sellGiftCard" class="tip"
+                                                   title="<?= lang('sell_gift_card') ?>">
+                                                    <i class="fa fa-2x fa-credit-card addIcon" id="addIcon"></i>
+                                                </a>
+                                            </div>
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -397,10 +456,11 @@
                                 <label class="table-label"><?= lang("order_items"); ?> *</label>
 
                                 <div class="controls table-controls">
-                                    <table id="slTable" class="table items table-striped table-bordered table-condensed table-hover sortable_table">
+                                    <table id="slTable"
+                                           class="table items table-striped table-bordered table-condensed table-hover sortable_table">
                                         <thead>
                                         <tr>
-                                            <th class="col-md-4"><?= lang('product') . ' (' . lang('code') .' - '.lang('name') . ')'; ?></th>
+                                            <th class="col-md-4"><?= lang('product') . ' (' . lang('code') . ' - ' . lang('name') . ')'; ?></th>
                                             <?php
                                             if ($Settings->product_serial) {
                                                 echo '<th class="col-md-2">' . lang("serial_no") . '</th>';
@@ -423,7 +483,8 @@
                                                 (<span class="currency"><?= $default_currency->code ?></span>)
                                             </th>
                                             <th style="width: 30px !important; text-align: center;">
-                                                <i class="fa fa-trash-o" style="opacity:0.5; filter:alpha(opacity=50);"></i>
+                                                <i class="fa fa-trash-o"
+                                                   style="opacity:0.5; filter:alpha(opacity=50);"></i>
                                             </th>
                                         </tr>
                                         </thead>
@@ -469,7 +530,8 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <?= lang("document", "document") ?>
-                                <input id="document" type="file" data-browse-label="<?= lang('browse'); ?>" name="document" data-show-upload="false"
+                                <input id="document" type="file" data-browse-label="<?= lang('browse'); ?>"
+                                       name="document" data-show-upload="false"
                                        data-show-preview="false" class="form-control file">
                             </div>
                         </div>
@@ -490,15 +552,15 @@
                             </div>
                         </div>
                         <?php if ($Owner || $Admin || $GP['sales-payments']) { ?>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <?= lang("payment_status", "slpayment_status"); ?>
-                                <?php $pst = array('pending' => lang('pending'), 'due' => lang('due'), 'partial' => lang('partial'), 'paid' => lang('paid'));
-                                echo form_dropdown('payment_status', $pst, '', 'class="form-control input-tip" required="required" id="slpayment_status"'); ?>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <?= lang("payment_status", "slpayment_status"); ?>
+                                    <?php $pst = array('pending' => lang('pending'), 'due' => lang('due'), 'partial' => lang('partial'), 'paid' => lang('paid'));
+                                    echo form_dropdown('payment_status', $pst, '', 'class="form-control input-tip" required="required" id="slpayment_status"'); ?>
 
+                                </div>
                             </div>
-                        </div>
-                        <?php 
+                            <?php
                         } else {
                             echo form_hidden('payment_status', 'pending');
                         }
@@ -565,7 +627,7 @@
                                                                 placeholder="<?= lang('card_type') ?>">
                                                             <option value="Visa"><?= lang("Visa"); ?></option>
                                                             <option
-                                                                value="MasterCard"><?= lang("MasterCard"); ?></option>
+                                                                    value="MasterCard"><?= lang("MasterCard"); ?></option>
                                                             <option value="Amex"><?= lang("Amex"); ?></option>
                                                             <option value="Discover"><?= lang("Discover"); ?></option>
                                                         </select>
@@ -636,7 +698,7 @@
                         </div>
                         <div class="col-md-12">
                             <div
-                                class="fprom-group"><?php echo form_submit('add_sale', lang("submit"), 'id="add_sale" class="btn btn-primary" style="padding: 6px 15px; margin:15px 0;"'); ?>
+                                    class="fprom-group"><?php echo form_submit('add_sale', lang("submit"), 'id="add_sale" class="btn btn-primary" style="padding: 6px 15px; margin:15px 0;"'); ?>
                                 <button type="button" class="btn btn-danger" id="reset"><?= lang('reset') ?></div>
                         </div>
                     </div>
@@ -647,13 +709,16 @@
                             <td><?= lang('items') ?> <span class="totals_val pull-right" id="titems">0</span></td>
                             <td><?= lang('total') ?> <span class="totals_val pull-right" id="total">0.00</span></td>
                             <?php if ($Owner || $Admin || $this->session->userdata('allow_discount')) { ?>
-                            <td><?= lang('order_discount') ?> <span class="totals_val pull-right" id="tds">0.00</span></td>
-                            <?php }?>
+                                <td><?= lang('order_discount') ?> <span class="totals_val pull-right"
+                                                                        id="tds">0.00</span></td>
+                            <?php } ?>
                             <?php if ($Settings->tax2) { ?>
-                                <td><?= lang('order_tax') ?> <span class="totals_val pull-right" id="ttax2">0.00</span></td>
+                                <td><?= lang('order_tax') ?> <span class="totals_val pull-right" id="ttax2">0.00</span>
+                                </td>
                             <?php } ?>
                             <td><?= lang('shipping') ?> <span class="totals_val pull-right" id="tship">0.00</span></td>
-                            <td><?= lang('grand_total') ?> <span class="totals_val pull-right" id="gtotal">0.00</span></td>
+                            <td><?= lang('grand_total') ?> <span class="totals_val pull-right" id="gtotal">0.00</span>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -671,7 +736,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i
-                            class="fa fa-2x">&times;</i></span><span class="sr-only"><?=lang('close');?></span></button>
+                                class="fa fa-2x">&times;</i></span><span class="sr-only"><?= lang('close'); ?></span>
+                </button>
                 <h4 class="modal-title" id="prModalLabel"></h4>
             </div>
             <div class="modal-body" id="pr_popover_content">
@@ -732,7 +798,8 @@
                         <label for="pprice" class="col-sm-4 control-label"><?= lang('unit_price') ?></label>
 
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="pprice" <?= ($Owner || $Admin || $GP['edit_price']) ? '' : 'readonly'; ?>>
+                            <input type="text" class="form-control"
+                                   id="pprice" <?= ($Owner || $Admin || $GP['edit_price']) ? '' : 'readonly'; ?>>
                         </div>
                     </div>
                     <table class="table table-bordered table-striped">
@@ -762,7 +829,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i
-                            class="fa fa-2x">&times;</i></span><span class="sr-only"><?=lang('close');?></span></button>
+                                class="fa fa-2x">&times;</i></span><span class="sr-only"><?= lang('close'); ?></span>
+                </button>
                 <h4 class="modal-title" id="mModalLabel"><?= lang('add_product_manually') ?></h4>
             </div>
             <div class="modal-body" id="pr_popover_content">
@@ -842,7 +910,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
-                        class="fa fa-2x">&times;</i></button>
+                            class="fa fa-2x">&times;</i></button>
                 <h4 class="modal-title" id="myModalLabel"><?= lang('sell_gift_card'); ?></h4>
             </div>
             <div class="modal-body">
@@ -858,7 +926,7 @@
                         <?php echo form_input('gccard_no', '', 'class="form-control" id="gccard_no"'); ?>
                         <div class="input-group-addon" style="padding-left: 10px; padding-right: 10px;"><a href="#"
                                                                                                            id="genNo"><i
-                                    class="fa fa-cogs"></i></a></div>
+                                        class="fa fa-cogs"></i></a></div>
                     </div>
                 </div>
                 <input type="hidden" name="gcname" value="<?= lang('gift_card') ?>" id="gcname"/>
